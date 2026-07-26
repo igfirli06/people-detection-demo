@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fortigate Parser Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-5xl mx-auto bg-white border-4 border-black p-6 shadow-[8px_8px_0px_rgba(0,0,0,1)]">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-3xl font-black uppercase">Fortigate Log Automation Engine</h1>
+            <a href="/" class="text-red-600 font-bold hover:underline">← Back</a>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+                <h2 class="font-black text-xl mb-2 uppercase">1. Raw Syslog Data</h2>
+                <div id="raw-log" class="bg-gray-900 text-green-400 p-4 border-4 border-black font-mono text-sm h-64 overflow-y-auto">
+                    Waiting for firewall traffic...
+                </div>
+            </div>
+            
+            <div>
+                <h2 class="font-black text-xl mb-2 uppercase">2. Parsed JSON (PyParsing)</h2>
+                <pre id="parsed-log" class="bg-gray-100 text-black p-4 border-4 border-black font-mono text-sm h-64 overflow-y-auto">
+{}
+                </pre>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Memanggil API Flask setiap 2 detik untuk simulasi real-time
+        setInterval(async () => {
+            const response = await fetch('/api/generate-log');
+            const data = await response.json();
+            
+            document.getElementById('raw-log').innerHTML = data.raw + "<br><br>" + document.getElementById('raw-log').innerHTML;
+            document.getElementById('parsed-log').innerHTML = JSON.stringify(data.parsed, null, 4);
+        }, 2000);
+    </script>
+</body>
+</html>

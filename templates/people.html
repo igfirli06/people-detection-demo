@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>People Detection Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-4xl mx-auto bg-white border-4 border-black p-6 shadow-[8px_8px_0px_rgba(0,0,0,1)]">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-3xl font-black uppercase">CCTV Monitoring System (Replica)</h1>
+            <a href="/" class="text-red-600 font-bold hover:underline">← Back</a>
+        </div>
+        
+        <div class="border-4 border-black bg-black mb-6 flex justify-center relative">
+            <div class="absolute top-2 left-2 bg-red-600 text-white px-2 py-1 font-bold text-xs animate-pulse">● LIVE</div>
+            <!-- Mengambil stream dari Flask -->
+            <img src="/video_feed" class="max-w-full h-auto">
+        </div>
+
+        <p class="font-bold">Status: <span class="text-green-600">Sistem YOLOv8 tersimulasi sedang berjalan...</span></p>
+    </div>
+</body>
+</html>
